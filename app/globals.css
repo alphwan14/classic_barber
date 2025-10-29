@@ -1,0 +1,213 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground: 240 5% 96%;
+  --background: 15 20% 4%;
+  --gold: 42 88% 52%;
+  --leather: 20 30% 12%;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  color: hsl(var(--foreground));
+  background: linear-gradient(135deg, hsl(15 25% 6%) 0%, hsl(20 35% 10%) 100%);
+  font-family: var(--font-inter), sans-serif;
+}
+
+/* Professional barber-specific styles */
+.container-responsive {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.barber-gradient {
+  background: linear-gradient(135deg, #b8860b 0%, #d4af37 50%, #f5e6a1 100%);
+}
+
+.text-barber-gradient {
+  background: linear-gradient(135deg, #b8860b 0%, #d4af37 50%, #f5e6a1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.leather-bg {
+  background: linear-gradient(135deg, #2c1810 0%, #3d2618 100%);
+}
+
+.stripes-bg {
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(212, 175, 55, 0.03) 10px,
+    rgba(212, 175, 55, 0.03) 20px
+  );
+}
+
+.glass-barber {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.barber-shadow {
+  box-shadow: 0 10px 40px -10px rgba(212, 175, 55, 0.3);
+}
+
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.text-shadow-lg {
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
+}
+
+.hover-lift {
+  transition: all 0.3s ease-out;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(20 30% 8%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #b8860b 0%, #d4af37 100%);
+  border-radius: 4px;
+}
+
+/* Text selection */
+::selection {
+  background: rgba(212, 175, 55, 0.3);
+  color: white;
+}
+
+/* Enhanced Responsive Design */
+/* Better container padding for mobile */
+.container-responsive {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-responsive {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-responsive {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Improved glass effect for mobile */
+.glass-barber {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Better hover effects for touch devices */
+@media (hover: hover) {
+  .hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+}
+
+/* Touch device optimizations */
+@media (pointer: coarse) {
+  .hover-lift:active {
+    transform: scale(0.95);
+    transition: transform 0.15s;
+  }
+}
+
+/* Ensure proper image scaling */
+.next-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Better text rendering for mobile */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Improved scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better focus styles for accessibility */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #d4af37;
+  outline-offset: 2px;
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 640px) {
+  .glass-barber {
+    backdrop-filter: blur(8px);
+  }
+  
+  .container-responsive {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+/* Fix layout issues */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#__next {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+footer {
+  flex-shrink: 0;
+}
+
+/* Ensure proper scrolling */
+body {
+  overflow-x: hidden;
+}
+
+/* Fix any potential height issues */
+.min-h-screen {
+  min-height: 100vh !important;
+}
