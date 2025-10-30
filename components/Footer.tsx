@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Instagram, Phone, MessageCircle, Scissors, MapPin, Clock } from 'lucide-react';
+import { Instagram, Phone, MessageCircle, Scissors, MapPin, Clock, Mail, Code } from 'lucide-react';
 
 export function Footer() {
   return (
@@ -68,11 +68,48 @@ export function Footer() {
         </div>
       </div>
 
+      {/* Developer Credit Section */}
+      <div className="border-t border-amber-400/20 bg-black/20">
+        <div className="container-responsive py-4">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-4 text-center lg:text-left">
+            {/* Developer Info */}
+            <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6">
+              <div className="flex items-center gap-2 text-amber-100/70">
+                <Code size={16} className="text-amber-400" />
+                <span className="text-sm font-medium">Developed with ❤️ by</span>
+              </div>
+              <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+                <div className="text-white text-sm font-semibold">Alphonse Lincoln</div>
+                <div className="hidden sm:block w-px h-4 bg-amber-400/30"></div>
+                <div className="flex items-center gap-2 text-amber-100/70">
+                  <Phone size={14} className="text-amber-400" />
+                  <a href="tel:+25469196669" className="text-sm hover:text-amber-400 transition-colors">
+                    +254769 196 669
+                  </a>
+                </div>
+                <div className="hidden sm:block w-px h-4 bg-amber-400/30"></div>
+                <div className="flex items-center gap-2 text-amber-100/70">
+                  <Mail size={14} className="text-amber-400" />
+                  <a href="mailto:alphwanwan14@gmail.com" className="text-sm hover:text-amber-400 transition-colors">
+                    alphwanwan14@gmail.com
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Call to Action */}
+            <div className="text-amber-100/60 text-xs sm:text-sm">
+              Transforming digital presence. 
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Bottom Bar */}
       <div className="border-t border-amber-400/20">
         <div className="container-responsive py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="text-amber-100/60 text-xs sm:text-sm text-center sm:text-left">
-            © 2024 Classic Barber Mombasa. All rights reserved.
+            © 2025 Classic Barber Mombasa. All rights reserved.
           </div>
           <div className="flex items-center gap-3 sm:gap-4">
             <a href="#" className="text-amber-100/60 hover:text-amber-400 transition-colors">

@@ -4,119 +4,188 @@ import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Filter, Scissors, Clock, Star, Zap } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
-// Signature Services
-const signatureServices = [
-  {
-    id: 100,
-    name: "Signature Fade",
-    price: 700,
-    duration: "45 min",
-    description: "Precision fade with sharp lines and perfect blending for a clean, modern look.",
-    image: "/images/signature_services/signaturefade.jpg",
-    category: "signature",
-    difficulty: "expert",
-    featured: true
-  },
-  {
-    id: 101,
-    name: "Classic Cut", 
-    price: 600,
-    duration: "30 min",
-    description: "Traditional haircut with clipper work and styling for timeless elegance.",
-    image: "/images/signature_services/classiccut.jpg",
-    category: "signature",
-    difficulty: "medium",
-    featured: true
-  },
-  {
-    id: 102,
-    name: "Beard Trim",
-    price: 400,
-    duration: "20 min",
-    description: "Professional beard shaping and styling with hot towel treatment.",
-    image: "/images/signature_services/beardtrim.jpg",
-    category: "signature",
-    difficulty: "medium",
-    featured: true
-  },
-  {
-    id: 103,
-    name: "Royal Treatment",
-    price: 1200,
-    duration: "60 min",
-    description: "Full haircut, beard trim, and relaxing facial massage for ultimate luxury.",
-    image: "/images/signature_services/royaltreatment.jpg",
-    category: "signature",
-    difficulty: "expert",
-    featured: true
-  }
-];
-
-// Extended hairstyle data with realistic pricing and details
-const hairstyles = [
-  // Signature Services First
-  ...signatureServices,
-  
-  // Fade Styles
-  { id: 1, name: "Low Fade", price: 600, duration: "30 min", category: "fade", difficulty: "medium", image: "https://images.unsplash.com/photo-1593702272658-9f3c9b1f98c6?q=80&w=500&auto=format&fit=crop" },
-  { id: 2, name: "Mid Fade", price: 650, duration: "35 min", category: "fade", difficulty: "medium", image: "https://images.unsplash.com/photo-1622286342621-4bd786c2447a?q=80&w=500&auto=format&fit=crop" },
-  { id: 3, name: "High Fade", price: 700, duration: "40 min", category: "fade", difficulty: "hard", image: "https://images.unsplash.com/photo-1605497788044-5a32c7078486?q=80&w=500&auto=format&fit=crop" },
-  { id: 4, name: "Taper Fade", price: 550, duration: "25 min", category: "fade", difficulty: "easy", image: "https://images.unsplash.com/photo-1567894340315-735d35d7d364?q=80&w=500&auto=format&fit=crop" },
-  { id: 5, name: "Skin Fade", price: 750, duration: "45 min", category: "fade", difficulty: "hard", image: "https://images.unsplash.com/photo-1592155931587-2fad89f816b1?q=80&w=500&auto=format&fit=crop" },
-
-  // Afro Styles
-  { id: 6, name: "Afro Trim", price: 500, duration: "20 min", category: "afro", difficulty: "easy", image: "https://images.unsplash.com/photo-1531384441138-2736e62e0919?q=80&w=500&auto=format&fit=crop" },
-  { id: 7, name: "Twist Out", price: 1200, duration: "60 min", category: "afro", difficulty: "hard", image: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?q=80&w=500&auto=format&fit=crop" },
-  { id: 8, name: "Box Braids", price: 2500, duration: "120 min", category: "afro", difficulty: "expert", image: "https://images.unsplash.com/photo-1517433670267-08e4a6e5b049?q=80&w=500&auto=format&fit=crop" },
-  { id: 9, name: "Cornrows", price: 1500, duration: "90 min", category: "afro", difficulty: "expert", image: "https://images.unsplash.com/photo-1589362292111-38db64ae5c54?q=80&w=500&auto=format&fit=crop" },
-  { id: 10, name: "Dread Maintenance", price: 800, duration: "45 min", category: "afro", difficulty: "medium", image: "https://images.unsplash.com/photo-1531384441138-2736e62e0919?q=80&w=500&auto=format&fit=crop" },
-
-  // Modern Cuts
-  { id: 11, name: "Textured Crop", price: 650, duration: "35 min", category: "modern", difficulty: "medium", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=500&auto=format&fit=crop" },
-  { id: 12, name: "French Crop", price: 600, duration: "30 min", category: "modern", difficulty: "medium", image: "https://images.unsplash.com/photo-1521146764732-6e4fa2f95215?q=80&w=500&auto=format&fit=crop" },
-  { id: 13, name: "Slick Back", price: 700, duration: "40 min", category: "modern", difficulty: "hard", image: "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?q=80&w=500&auto=format&fit=crop" },
-  { id: 14, name: "Side Part", price: 550, duration: "25 min", category: "modern", difficulty: "easy", image: "https://images.unsplash.com/photo-1519058082700-08a0b56da9b4?q=80&w=500&auto=format&fit=crop" },
-  { id: 15, name: "Undercut", price: 750, duration: "45 min", category: "modern", difficulty: "hard", image: "https://images.unsplash.com/photo-1605497788044-5a32c7078486?q=80&w=500&auto=format&fit=crop" },
-
-  // Beard Styles
-  { id: 16, name: "Beard Trim", price: 300, duration: "15 min", category: "beard", difficulty: "easy", image: "https://images.unsplash.com/photo-1544126591-1b5dd175a0f6?q=80&w=500&auto=format&fit=crop" },
-  { id: 17, name: "Full Beard Shape", price: 500, duration: "25 min", category: "beard", difficulty: "medium", image: "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=500&auto=format&fit=crop" },
-  { id: 18, name: "Line Up", price: 200, duration: "10 min", category: "beard", difficulty: "easy", image: "https://images.unsplash.com/photo-1544126591-1b5dd175a0f6?q=80&w=500&auto=format&fit=crop" },
-  { id: 19, name: "Goatee Style", price: 350, duration: "20 min", category: "beard", difficulty: "medium", image: "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=500&auto=format&fit=crop" },
-  { id: 20, name: "Beard & Mustache", price: 450, duration: "30 min", category: "beard", difficulty: "medium", image: "https://images.unsplash.com/photo-1544126591-1b5dd175a0f6?q=80&w=500&auto=format&fit=crop" },
-
-  // Traditional Styles
-  { id: 21, name: "Classic Cut", price: 400, duration: "20 min", category: "traditional", difficulty: "easy", image: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=500&auto=format&fit=crop" },
-  { id: 22, name: "Buzz Cut", price: 350, duration: "15 min", category: "traditional", difficulty: "easy", image: "https://images.unsplash.com/photo-1592155931587-2fad89f816b1?q=80&w=500&auto=format&fit=crop" },
-  { id: 23, name: "Pompadour", price: 800, duration: "50 min", category: "traditional", difficulty: "hard", image: "https://images.unsplash.com/photo-1567894340315-735d35d7d364?q=80&w=500&auto=format&fit=crop" },
-  { id: 24, name: "Quiff", price: 700, duration: "40 min", category: "traditional", difficulty: "medium", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=500&auto=format&fit=crop" },
-  { id: 25, name: "Business Cut", price: 500, duration: "25 min", category: "traditional", difficulty: "easy", image: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=500&auto=format&fit=crop" },
-
-  // Additional styles to reach 50+
-  { id: 26, name: "Curly Fade", price: 850, duration: "55 min", category: "fade", difficulty: "expert", image: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?q=80&w=500&auto=format&fit=crop" },
-  { id: 27, name: "Design Fade", price: 900, duration: "60 min", category: "fade", difficulty: "expert", image: "https://images.unsplash.com/photo-1589362292111-38db64ae5c54?q=80&w=500&auto=format&fit=crop" },
-  { id: 28, name: "Temple Fade", price: 600, duration: "30 min", category: "fade", difficulty: "medium", image: "https://images.unsplash.com/photo-1622286342621-4bd786c2447a?q=80&w=500&auto=format&fit=crop" },
-  { id: 29, name: "Burst Fade", price: 750, duration: "45 min", category: "fade", difficulty: "hard", image: "https://images.unsplash.com/photo-1605497788044-5a32c7078486?q=80&w=500&auto=format&fit=crop" },
-  { id: 30, name: "Drop Fade", price: 700, duration: "40 min", category: "fade", difficulty: "hard", image: "https://images.unsplash.com/photo-1593702272658-9f3c9b1f98c6?q=80&w=500&auto=format&fit=crop" },
-];
-
-const categories = [
-  { id: 'all', name: 'All Styles', count: hairstyles.length },
-  { id: 'signature', name: 'Signature Services', count: hairstyles.filter(s => s.category === 'signature').length },
-  { id: 'fade', name: 'Fade Cuts', count: hairstyles.filter(s => s.category === 'fade').length },
-  { id: 'afro', name: 'Afro Styles', count: hairstyles.filter(s => s.category === 'afro').length },
-  { id: 'modern', name: 'Modern Cuts', count: hairstyles.filter(s => s.category === 'modern').length },
-  { id: 'beard', name: 'Beard Work', count: hairstyles.filter(s => s.category === 'beard').length },
-  { id: 'traditional', name: 'Traditional', count: hairstyles.filter(s => s.category === 'traditional').length },
-];
-
+// Fixed difficulty colors with proper typing
 const difficultyColors: { [key: string]: string } = {
   easy: 'text-green-400',
   medium: 'text-amber-400',
   hard: 'text-orange-400',
   expert: 'text-red-400'
 };
+
+// 30 Professional Hairstyles with your images
+const hairstyles = [
+  // Signature Services (4)
+  {
+    id: 1, name: "Signature Fade", price: 700, duration: "45 min", category: "fade", 
+    difficulty: "hard", image: "/images/signature_services/signaturefade.jpg",
+    description: "Precision fade with sharp lines and perfect blending"
+  },
+  {
+    id: 2, name: "Classic Cut", price: 600, duration: "30 min", category: "traditional", 
+    difficulty: "easy", image: "/images/signature_services/classiccut.jpg",
+    description: "Traditional haircut with timeless elegance"
+  },
+  {
+    id: 3, name: "Beard Sculpt", price: 400, duration: "20 min", category: "beard", 
+    difficulty: "medium", image: "/images/signature_services/beardtrim.jpg",
+    description: "Professional beard shaping and styling"
+  },
+  {
+    id: 4, name: "Royal Treatment", price: 1200, duration: "60 min", category: "premium", 
+    difficulty: "expert", image: "/images/signature_services/royaltreatment.jpg",
+    description: "Complete grooming with facial massage"
+  },
+
+  // Fade Styles (8)
+  {
+    id: 5, name: "Low Taper Fade", price: 650, duration: "35 min", category: "fade", 
+    difficulty: "medium", image: "/images/gallery/barber1.jpeg",
+    description: "Subtle taper starting low for clean look"
+  },
+  {
+    id: 6, name: "High Skin Fade", price: 800, duration: "50 min", category: "fade", 
+    difficulty: "hard", image: "/images/gallery/barber2.jpeg",
+    description: "Dramatic skin fade for bold statement"
+  },
+  {
+    id: 7, name: "Mid Fade", price: 700, duration: "40 min", category: "fade", 
+    difficulty: "medium", image: "/images/gallery/barber3.jpeg",
+    description: "Balanced fade with perfect blending"
+  },
+  {
+    id: 8, name: "Temple Fade", price: 600, duration: "30 min", category: "fade", 
+    difficulty: "medium", image: "/images/gallery/barber4.jpeg",
+    description: "Sharp temple fade with clean lines"
+  },
+  {
+    id: 9, name: "Burst Fade", price: 750, duration: "45 min", category: "fade", 
+    difficulty: "hard", image: "/images/gallery/barber5.jpeg",
+    description: "Circular fade pattern for unique style"
+  },
+  {
+    id: 10, name: "Drop Fade", price: 700, duration: "40 min", category: "fade", 
+    difficulty: "hard", image: "/images/gallery/barber6.jpeg",
+    description: "Fade that drops behind the ear"
+  },
+  {
+    id: 11, name: "Design Fade", price: 900, duration: "60 min", category: "fade", 
+    difficulty: "expert", image: "/images/gallery/barber7.jpeg",
+    description: "Creative designs and patterns in fade"
+  },
+  {
+    id: 12, name: "Curly Fade", price: 750, duration: "45 min", category: "fade", 
+    difficulty: "hard", image: "/images/gallery/barber8.jpeg",
+    description: "Fade tailored for curly hair texture"
+  },
+
+  // Modern Styles (6)
+  {
+    id: 13, name: "Textured Crop", price: 650, duration: "35 min", category: "modern", 
+    difficulty: "medium", image: "/images/gallery/barber9.jpeg",
+    description: "Modern crop with textured top"
+  },
+  {
+    id: 14, name: "French Crop", price: 600, duration: "30 min", category: "modern", 
+    difficulty: "medium", image: "/images/gallery/barber10.jpeg",
+    description: "Clean French crop with fringe"
+  },
+  {
+    id: 15, name: "Slick Back", price: 700, duration: "40 min", category: "modern", 
+    difficulty: "hard", image: "/images/gallery/barber11.jpeg",
+    description: "Sleek slick back with strong hold"
+  },
+  {
+    id: 16, name: "Side Part", price: 550, duration: "25 min", category: "modern", 
+    difficulty: "easy", image: "/images/gallery/barber12.jpeg",
+    description: "Classic side part with precision"
+  },
+  {
+    id: 17, name: "Undercut", price: 750, duration: "45 min", category: "modern", 
+    difficulty: "hard", image: "/images/gallery/barber13.jpeg",
+    description: "Sharp undercut with contrast"
+  },
+  {
+    id: 18, name: "Modern Mullet", price: 800, duration: "50 min", category: "modern", 
+    difficulty: "expert", image: "/images/gallery/barber14.jpeg",
+    description: "Contemporary take on classic mullet"
+  },
+
+  // Afro & Textured Styles (6)
+  {
+    id: 19, name: "Afro Shape", price: 500, duration: "25 min", category: "afro", 
+    difficulty: "easy", image: "/images/gallery/barber15.jpeg",
+    description: "Professional afro shaping and trim"
+  },
+  {
+    id: 20, name: "Twist Out", price: 1200, duration: "60 min", category: "afro", 
+    difficulty: "expert", image: "/images/gallery/barber16.jpeg",
+    description: "Beautiful twist out style"
+  },
+  {
+    id: 21, name: "Box Braids", price: 2500, duration: "120 min", category: "afro", 
+    difficulty: "expert", image: "/images/gallery/barber17.jpeg",
+    description: "Professional box braids installation"
+  },
+  {
+    id: 22, name: "Cornrows", price: 1500, duration: "90 min", category: "afro", 
+    difficulty: "expert", image: "/images/gallery/barber18.jpeg",
+    description: "Traditional cornrow styling"
+  },
+  {
+    id: 23, name: "Dread Maintenance", price: 800, duration: "45 min", category: "afro", 
+    difficulty: "medium", image: "/images/gallery/barber19.jpeg",
+    description: "Dreadlock maintenance and care"
+  },
+  {
+    id: 24, name: "Fro Hawk", price: 700, duration: "40 min", category: "afro", 
+    difficulty: "hard", image: "/images/gallery/barber20.jpeg",
+    description: "Mohawk style with afro texture"
+  },
+
+  // Beard & Premium (6)
+  {
+    id: 25, name: "Full Beard Shape", price: 500, duration: "25 min", category: "beard", 
+    difficulty: "medium", image: "/images/gallery/barber21.jpeg",
+    description: "Complete beard shaping and styling"
+  },
+  {
+    id: 26, name: "Goatee Style", price: 350, duration: "20 min", category: "beard", 
+    difficulty: "medium", image: "/images/gallery/barber22.jpeg",
+    description: "Precision goatee shaping"
+  },
+  {
+    id: 27, name: "Mustache Design", price: 300, duration: "15 min", category: "beard", 
+    difficulty: "easy", image: "/images/gallery/barber23.jpeg",
+    description: "Creative mustache styling"
+  },
+  {
+    id: 28, name: "Hot Towel Shave", price: 600, duration: "30 min", category: "premium", 
+    difficulty: "medium", image: "/images/gallery/barber24.jpeg",
+    description: "Traditional straight razor shave"
+  },
+  {
+    id: 29, name: "Executive Package", price: 2000, duration: "90 min", category: "premium", 
+    difficulty: "expert", image: "/images/gallery/barber25.jpeg",
+    description: "VIP treatment with private room"
+  },
+  {
+    id: 30, name: "Wedding Prep", price: 2500, duration: "120 min", category: "premium", 
+    difficulty: "expert", image: "/images/gallery/barber26.jpeg",
+    description: "Complete grooming for special occasions"
+  }
+];
+
+const categories = [
+  { id: 'all', name: 'All Styles', count: hairstyles.length },
+  { id: 'fade', name: 'Fade Cuts', count: hairstyles.filter(s => s.category === 'fade').length },
+  { id: 'modern', name: 'Modern Cuts', count: hairstyles.filter(s => s.category === 'modern').length },
+  { id: 'afro', name: 'Afro Styles', count: hairstyles.filter(s => s.category === 'afro').length },
+  { id: 'beard', name: 'Beard Work', count: hairstyles.filter(s => s.category === 'beard').length },
+  { id: 'premium', name: 'Premium', count: hairstyles.filter(s => s.category === 'premium').length },
+  { id: 'traditional', name: 'Traditional', count: hairstyles.filter(s => s.category === 'traditional').length },
+];
 
 export default function ServicesPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -153,7 +222,7 @@ export default function ServicesPage() {
               Style <span className="text-barber-gradient">Gallery</span>
             </h1>
             <p className="text-xl text-amber-100/80 mb-8 text-shadow">
-              Browse 50+ professional styles. Find your perfect look and book instantly.
+              Browse 30+ professional styles. Find your perfect look and book instantly.
             </p>
             
             {/* Search Bar */}
@@ -203,20 +272,9 @@ export default function ServicesPage() {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ delay: index * 0.1 }}
                 layout
-                className={`glass-barber rounded-2xl overflow-hidden hover-lift group cursor-pointer border ${
-                  style.category === 'signature' 
-                    ? 'border-amber-400/40 shadow-lg shadow-amber-400/20' 
-                    : 'border-amber-400/20'
-                } relative`}
+                className="glass-barber rounded-2xl overflow-hidden hover-lift group cursor-pointer border border-amber-400/20"
                 onClick={() => setSelectedStyle(style)}
               >
-                {/* Featured Badge for Signature Services */}
-                {style.category === 'signature' && (
-                  <div className="absolute top-2 left-2 z-20 px-2 py-1 bg-amber-400 text-[#1a120b] text-xs font-bold rounded-full barber-shadow">
-                    SIGNATURE
-                  </div>
-                )}
-
                 {/* Style Image */}
                 <div className="relative aspect-[4/5] overflow-hidden">
                   <Image
@@ -224,6 +282,7 @@ export default function ServicesPage() {
                     alt={style.name}
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   
@@ -233,7 +292,7 @@ export default function ServicesPage() {
                   </div>
 
                   {/* Difficulty Badge */}
-                  <div className={`absolute top-4 left-4 px-2 py-1 rounded-full bg-black/80 text-xs font-medium ${difficultyColors[style.difficulty]}`}>
+                  <div className={`absolute top-4 left-4 px-2 py-1 rounded-full bg-black/80 text-xs font-medium ${difficultyColors[style.difficulty] || 'text-amber-400'}`}>
                     {style.difficulty}
                   </div>
                 </div>
@@ -243,6 +302,7 @@ export default function ServicesPage() {
                   <h3 className="font-bold text-white text-lg mb-2 group-hover:text-amber-400 transition-colors">
                     {style.name}
                   </h3>
+                  <p className="text-amber-100/70 text-sm mb-3">{style.description}</p>
                   <div className="flex items-center justify-between text-sm text-amber-100/70">
                     <div className="flex items-center gap-1">
                       <Clock className="w-4 h-4" />
@@ -267,118 +327,6 @@ export default function ServicesPage() {
             <p className="text-amber-100/70">Try adjusting your search or filter criteria</p>
           </div>
         )}
-      </Section>
-
-      {/* Style Modal */}
-      {selectedStyle && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
-          onClick={() => setSelectedStyle(null)}
-        >
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            className="glass-barber rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="relative">
-              {/* Close Button */}
-              <button
-                onClick={() => setSelectedStyle(null)}
-                className="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-black/80 text-white flex items-center justify-center hover:bg-amber-400 hover:text-[#1a120b] transition-colors"
-              >
-                ×
-              </button>
-              
-              {/* Signature Badge in Modal */}
-              {selectedStyle.category === 'signature' && (
-                <div className="absolute top-4 left-4 z-20 px-3 py-1 bg-amber-400 text-[#1a120b] text-sm font-bold rounded-full barber-shadow">
-                  SIGNATURE SERVICE
-                </div>
-              )}
-              
-              <div className="grid md:grid-cols-2 gap-6">
-                {/* Image */}
-                <div className="relative aspect-square">
-                  <Image
-                    src={selectedStyle.image}
-                    alt={selectedStyle.name}
-                    fill
-                    className="object-cover rounded-t-3xl md:rounded-l-3xl md:rounded-tr-none"
-                  />
-                </div>
-
-                {/* Details */}
-                <div className="p-6">
-                  <h2 className="text-3xl font-bold text-white mb-2">{selectedStyle.name}</h2>
-                  
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="text-2xl font-bold text-barber-gradient">
-                      KSh {selectedStyle.price}
-                    </div>
-                    <div className={`px-3 py-1 rounded-full text-sm font-medium ${difficultyColors[selectedStyle.difficulty]} bg-amber-400/10`}>
-                      {selectedStyle.difficulty} level
-                    </div>
-                  </div>
-
-                  <div className="space-y-3 mb-6">
-                    <div className="flex items-center gap-2 text-amber-100/80">
-                      <Clock className="w-5 h-5 text-amber-400" />
-                      <span>Duration: {selectedStyle.duration}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-amber-100/80">
-                      <Scissors className="w-5 h-5 text-amber-400" />
-                      <span>Category: {selectedStyle.category}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-amber-100/80">
-                      <Zap className="w-5 h-5 text-amber-400" />
-                      <span>Skill: Professional grade</span>
-                    </div>
-                  </div>
-
-                  {/* Description */}
-                  <p className="text-amber-100/80 mb-6 leading-relaxed">
-                    {selectedStyle.description}
-                  </p>
-
-                  <div className="space-y-3">
-                    <button className="w-full py-4 rounded-full barber-gradient text-[#1a120b] font-bold text-lg hover:shadow-2xl transition-all duration-300">
-                      BOOK THIS STYLE
-                    </button>
-                    <button className="w-full py-4 rounded-full border-2 border-amber-400 text-amber-400 font-bold text-lg hover:bg-amber-400 hover:text-[#1a120b] transition-all duration-300">
-                      SAVE FOR LATER
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
-
-      {/* CTA Section */}
-      <Section>
-        <div className="glass-barber rounded-3xl p-12 text-center border border-amber-400/20">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 text-shadow">
-            Can't Find Your Style?
-          </h2>
-          <p className="text-xl text-amber-100/80 mb-8 max-w-2xl mx-auto">
-            Bring any reference photo and our expert barbers will recreate it perfectly.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-4 rounded-full barber-gradient text-[#1a120b] font-bold text-lg hover:shadow-2xl transition-all duration-300">
-              CONSULT OUR BARBERS
-            </button>
-            <a 
-              href="https://wa.me/254712345678"
-              className="px-8 py-4 rounded-full border-2 border-[#25D366] text-[#25D366] font-bold text-lg hover:bg-[#25D366] hover:text-white transition-all duration-300"
-            >
-              SEND PHOTO ON WHATSAPP
-            </a>
-          </div>
-        </div>
       </Section>
     </div>
   );

@@ -9,7 +9,7 @@ const navItems = [
   { href: '/', label: 'Home' },
   { href: '/services', label: 'Services' },
   { href: '/barbers', label: 'Our Barbers' },
-  { href: '/gallery', label: 'Gallery' },
+  { href: '/gallery', label: 'Gallery' }, // Added Gallery link
   { href: '/contact', label: 'Contact' },
 ];
 

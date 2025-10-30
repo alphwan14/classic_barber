@@ -30,29 +30,35 @@ export default function HomePage() {
   ];
 
   const services = [
-    {
-      name: "Classic Cut",
-      price: "KSh 600",
-      duration: "30 min",
-      description: "Precision haircut with clipper work and styling",
-      image: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=500&auto=format&fit=crop"
-    },
-    {
-      name: "Beard Trim",
-      price: "KSh 400", 
-      duration: "20 min",
-      description: "Shape and style your beard with hot towel treatment",
-      image: "https://images.unsplash.com/photo-1544126591-1b5dd175a0f6?q=80&w=500&auto=format&fit=crop"
-    },
-    {
-      name: "Royal Treatment",
-      price: "KSh 1,200",
-      duration: "45 min",
-      description: "Full haircut, beard trim, and relaxing facial massage",
-      image: "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=500&auto=format&fit=crop"
-    }
-  ];
-
+  {
+    name: "Signature Fade",
+    price: "KSh 700",
+    duration: "45 min",
+    description: "Precision fade with sharp lines and perfect blending for a clean, modern look.",
+    image: "/images/signature_services/signaturefade.jpg"
+  },
+  {
+    name: "Classic Cut", 
+    price: "KSh 600",
+    duration: "30 min",
+    description: "Traditional haircut with clipper work and styling for timeless elegance.",
+    image: "/images/signature_services/classiccut.jpg"
+  },
+  {
+    name: "Beard Trim",
+    price: "KSh 400",
+    duration: "20 min",
+    description: "Professional beard shaping and styling with hot towel treatment.",
+    image: "/images/signature_services/beardtrim.jpg"
+  },
+  {
+    name: "Royal Treatment",
+    price: "KSh 1,200",
+    duration: "60 min",
+    description: "Full haircut, beard trim, and relaxing facial massage for ultimate luxury.",
+    image: "/images/signature_services/royaltreatment.jpg"
+  }
+];
   return (
     <div className="overflow-hidden">
       {/* Hero Section - FIXED MOBILE RESPONSIVENESS */}
