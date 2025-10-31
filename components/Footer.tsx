@@ -1,23 +1,24 @@
 import Link from 'next/link';
-import { Instagram, Phone, MessageCircle, Scissors, MapPin, Clock, Mail, Code } from 'lucide-react';
+import { Instagram, Phone, MessageCircle, Scissors, MapPin, Clock } from 'lucide-react';
 
 export function Footer() {
   return (
     <footer className="leather-bg border-t border-amber-400/20 mt-auto">
       <div className="container-responsive py-8 sm:py-12 grid gap-6 sm:gap-8 md:grid-cols-4">
-        {/* Brand */}
+        {/* Brand - SEO Optimized */}
         <div className="md:col-span-2">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 rounded-full barber-gradient text-[#1a120b]">
               <Scissors size={20} />
             </div>
             <div>
-              <span className="text-xl sm:text-2xl font-bold tracking-tight text-white">CLASSIC BARBER</span>
-              <div className="text-amber-400/80 text-sm tracking-wide">MOMBASA, KENYA</div>
+              <span className="text-xl sm:text-2xl font-bold tracking-tight text-white">CLASSIC BARBER MOMBASA</span>
+              <div className="text-amber-400/80 text-sm tracking-wide">PREMIUM BARBERSHOP IN MOMBASA, KENYA</div>
             </div>
           </div>
           <p className="text-amber-100/90 text-base sm:text-lg mb-4 max-w-md">
-            Transforming men's grooming in Mombasa with precision cuts, premium service, and unmatched expertise.
+            Your trusted barber in Mombasa for precision haircuts, beard grooming, and professional styling. 
+            Experience the best barber shop services in Nyali, Mombasa with our certified expert barbers.
           </p>
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 text-amber-100/70">
             <div className="flex items-center gap-2">
@@ -39,12 +40,13 @@ export function Footer() {
             <li><Link href="/barbers" className="hover:text-amber-400 transition-colors text-sm sm:text-base">Meet Our Barbers</Link></li>
             <li><Link href="/gallery" className="hover:text-amber-400 transition-colors text-sm sm:text-base">Style Gallery</Link></li>
             <li><Link href="/contact" className="hover:text-amber-400 transition-colors text-sm sm:text-base">Visit Us</Link></li>
+            <li><Link href="/booking" className="hover:text-amber-400 transition-colors text-sm sm:text-base">Book Appointment</Link></li>
           </ul>
         </div>
 
-        {/* Contact & Hours */}
+        {/* Contact & Hours - Local SEO Optimized */}
         <div>
-          <h4 className="font-bold text-amber-100 mb-3 sm:mb-4 text-lg">VISIT US</h4>
+          <h4 className="font-bold text-amber-100 mb-3 sm:mb-4 text-lg">VISIT OUR BARBERSHOP</h4>
           <div className="space-y-2 sm:space-y-3 text-amber-100/70">
             <div className="flex items-start gap-2">
               <MapPin size={16} className="text-amber-400 mt-1 flex-shrink-0" />
@@ -64,42 +66,11 @@ export function Footer() {
                 <span className="text-amber-400">10 AM - 8 PM</span>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Developer Credit Section */}
-      <div className="border-t border-amber-400/20 bg-black/20">
-        <div className="container-responsive py-4">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-4 text-center lg:text-left">
-            {/* Developer Info */}
-            <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6">
-              <div className="flex items-center gap-2 text-amber-100/70">
-                <Code size={16} className="text-amber-400" />
-                <span className="text-sm font-medium">Developed with ❤️ by</span>
+            <div className="pt-2">
+              <div className="text-amber-400 text-sm font-semibold">Services Available:</div>
+              <div className="text-xs text-amber-100/70 mt-1">
+                Haircuts • Beard Trimming • Afro Styles • Fade Cuts • Kids Cuts
               </div>
-              <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
-                <div className="text-white text-sm font-semibold">Alphonse Lincoln</div>
-                <div className="hidden sm:block w-px h-4 bg-amber-400/30"></div>
-                <div className="flex items-center gap-2 text-amber-100/70">
-                  <Phone size={14} className="text-amber-400" />
-                  <a href="tel:+25469196669" className="text-sm hover:text-amber-400 transition-colors">
-                    +254769 196 669
-                  </a>
-                </div>
-                <div className="hidden sm:block w-px h-4 bg-amber-400/30"></div>
-                <div className="flex items-center gap-2 text-amber-100/70">
-                  <Mail size={14} className="text-amber-400" />
-                  <a href="mailto:alphwanwan14@gmail.com" className="text-sm hover:text-amber-400 transition-colors">
-                    alphwanwan14@gmail.com
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Call to Action */}
-            <div className="text-amber-100/60 text-xs sm:text-sm">
-              Transforming digital presence. 
             </div>
           </div>
         </div>
@@ -109,16 +80,16 @@ export function Footer() {
       <div className="border-t border-amber-400/20">
         <div className="container-responsive py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="text-amber-100/60 text-xs sm:text-sm text-center sm:text-left">
-            © 2025 Classic Barber Mombasa. All rights reserved.
+            © 2024 Classic Barber Mombasa. Premium barber services in Mombasa, Kenya. All rights reserved.
           </div>
           <div className="flex items-center gap-3 sm:gap-4">
-            <a href="#" className="text-amber-100/60 hover:text-amber-400 transition-colors">
+            <a href="#" className="text-amber-100/60 hover:text-amber-400 transition-colors" aria-label="Follow us on Instagram">
               <Instagram size={18} />
             </a>
-            <a href="https://wa.me/254712345678" className="text-amber-100/60 hover:text-amber-400 transition-colors">
+            <a href="https://wa.me/254712345678" className="text-amber-100/60 hover:text-amber-400 transition-colors" aria-label="Chat with us on WhatsApp">
               <MessageCircle size={18} />
             </a>
-            <a href="tel:+254712345678" className="text-amber-100/60 hover:text-amber-400 transition-colors">
+            <a href="tel:+254712345678" className="text-amber-100/60 hover:text-amber-400 transition-colors" aria-label="Call us">
               <Phone size={18} />
             </a>
           </div>

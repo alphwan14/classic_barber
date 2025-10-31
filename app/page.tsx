@@ -30,44 +30,45 @@ export default function HomePage() {
   ];
 
   const services = [
-  {
-    name: "Signature Fade",
-    price: "KSh 700",
-    duration: "45 min",
-    description: "Precision fade with sharp lines and perfect blending for a clean, modern look.",
-    image: "/images/signature_services/signaturefade.jpg"
-  },
-  {
-    name: "Classic Cut", 
-    price: "KSh 600",
-    duration: "30 min",
-    description: "Traditional haircut with clipper work and styling for timeless elegance.",
-    image: "/images/signature_services/classiccut.jpg"
-  },
-  {
-    name: "Beard Trim",
-    price: "KSh 400",
-    duration: "20 min",
-    description: "Professional beard shaping and styling with hot towel treatment.",
-    image: "/images/signature_services/beardtrim.jpg"
-  },
-  {
-    name: "Royal Treatment",
-    price: "KSh 1,200",
-    duration: "60 min",
-    description: "Full haircut, beard trim, and relaxing facial massage for ultimate luxury.",
-    image: "/images/signature_services/royaltreatment.jpg"
-  }
-];
+    {
+      name: "Signature Fade",
+      price: "KSh 700",
+      duration: "45 min",
+      description: "Precision fade with sharp lines and perfect blending for a clean, modern look.",
+      image: "/images/signature_services/signaturefade.jpg"
+    },
+    {
+      name: "Classic Cut", 
+      price: "KSh 600",
+      duration: "30 min",
+      description: "Traditional haircut with clipper work and styling for timeless elegance.",
+      image: "/images/signature_services/classiccut.jpg"
+    },
+    {
+      name: "Beard Trim",
+      price: "KSh 400",
+      duration: "20 min",
+      description: "Professional beard shaping and styling with hot towel treatment.",
+      image: "/images/signature_services/beardtrim.jpg"
+    },
+    {
+      name: "Royal Treatment",
+      price: "KSh 1,200",
+      duration: "60 min",
+      description: "Full haircut, beard trim, and relaxing facial massage for ultimate luxury.",
+      image: "/images/signature_services/royaltreatment.jpg"
+    }
+  ];
+
   return (
     <div className="overflow-hidden">
-      {/* Hero Section - FIXED MOBILE RESPONSIVENESS */}
+      {/* Hero Section - SEO Optimized */}
       <section className="relative min-h-[80vh] sm:min-h-[90vh] flex items-center justify-center leather-bg overflow-hidden">
         {/* Background with better positioning */}
         <div className="absolute inset-0">
           <Image
             src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=2074&auto=format&fit=crop"
-            alt="Professional barber at work"
+            alt="Professional barber at work in Mombasa - Classic Barber Shop"
             fill
             className="object-cover object-center opacity-15 sm:opacity-20"
             priority
@@ -96,22 +97,22 @@ export default function HomePage() {
               <span className="text-amber-400 text-sm font-medium">MOMBASA'S #1 RATED BARBER</span>
             </motion.div>
 
-            {/* MAIN HEADLINE - IMPROVED MOBILE TYPOGRAPHY */}
+            {/* MAIN HEADLINE - SEO OPTIMIZED */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4 sm:mb-6 text-center sm:text-left">
-              <span className="block text-white text-shadow-lg leading-tight sm:leading-normal">LOOK SHARP.</span>
-              <span className="block text-barber-gradient text-shadow-lg leading-tight sm:leading-normal">FEEL CONFIDENT.</span>
+              <span className="block text-white text-shadow-lg leading-tight sm:leading-normal">Best Barber in Mombasa</span>
+              <span className="block text-barber-gradient text-shadow-lg leading-tight sm:leading-normal">Classic Cuts, Modern Style</span>
             </h1>
             
-            {/* Subtitle with better mobile spacing */}
+            {/* Subtitle with SEO Keywords */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
               className="text-lg sm:text-xl md:text-2xl text-amber-100/90 mb-6 sm:mb-8 leading-relaxed text-center sm:text-left text-shadow"
             >
-              Premium grooming experiences that transform your style and boost your confidence. 
+              Premium barber shop in Mombasa offering expert haircuts, beard grooming, and professional styling. 
               <span className="block text-amber-400 font-semibold mt-2 sm:mt-3 text-base sm:text-lg md:text-xl text-shadow">
-                Walk-ins welcome • M-Pesa accepted • Open late
+                Walk-ins welcome • M-Pesa accepted • Open until 10PM
               </span>
             </motion.p>
 
@@ -158,7 +159,7 @@ export default function HomePage() {
                     <Star key={star} className="w-3 h-3 sm:w-4 sm:h-4 text-amber-400 fill-current" />
                   ))}
                 </div>
-                <span className="text-sm font-medium text-white">4.9/5</span>
+                <span className="text-sm font-medium text-white">4.9/5 Rating</span>
               </div>
               <div className="w-px h-4 bg-amber-400/30 hidden sm:block"></div>
               <div className="flex items-center gap-2">
@@ -181,7 +182,7 @@ export default function HomePage() {
       {/* Features Section - FIXED CONTRAST & MOBILE */}
       <Section>
         <div className="text-center mb-12 sm:mb-16 px-4 sm:px-0">
-          <div className="text-amber-400 text-sm uppercase tracking-wider font-semibold mb-2 text-shadow">WHY CHOOSE US</div>
+          <div className="text-amber-400 text-sm uppercase tracking-wider font-semibold mb-2 text-shadow">WHY CHOOSE CLASSIC BARBER</div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-shadow-lg mb-3 sm:mb-4">
             The Classic Barber <span className="text-barber-gradient">Experience</span>
           </h2>
@@ -225,16 +226,16 @@ export default function HomePage() {
       {/* Popular Services - FIXED IMAGES & PRICE VISIBILITY */}
       <Section>
         <div className="text-center mb-12 sm:mb-16 px-4 sm:px-0">
-          <div className="text-amber-400 text-sm uppercase tracking-wider font-semibold mb-2 text-shadow">PREMIUM GROOMING</div>
+          <div className="text-amber-400 text-sm uppercase tracking-wider font-semibold mb-2 text-shadow">PREMIUM GROOMING SERVICES</div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-shadow-lg mb-3 sm:mb-4">
             Our <span className="text-barber-gradient">Signature</span> Services
           </h2>
           <p className="text-lg sm:text-xl text-amber-100/90 max-w-2xl mx-auto text-shadow px-4 sm:px-0">
-            Expertly crafted services designed for the modern gentleman
+            Expertly crafted services designed for the modern gentleman in Mombasa
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 px-4 sm:px-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 px-4 sm:px-0">
           {services.map((service, index) => (
             <motion.div
               key={service.name}
@@ -255,10 +256,10 @@ export default function HomePage() {
                   <div className="relative h-48 sm:h-56 overflow-hidden">
                     <Image
                       src={service.image}
-                      alt={service.name}
+                      alt={`${service.name} - Classic Barber Mombasa`}
                       fill
                       className="object-cover group-hover:scale-110 transition-transform duration-500"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     />
                     {/* Dark overlay for better text readability */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
@@ -310,7 +311,7 @@ export default function HomePage() {
             href="/services"
             className="inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 rounded-full glass-barber border border-amber-400/20 text-amber-400 font-bold text-sm sm:text-lg hover:bg-amber-400 hover:text-[#1a120b] transition-all duration-300 barber-shadow"
           >
-            VIEW ALL 50+ STYLES
+            VIEW ALL 30+ STYLES
             <motion.span
               animate={{ x: [0, 4, 0] }}
               transition={{ duration: 1.5, repeat: Infinity }}
@@ -321,7 +322,7 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* CTA Section - ENHANCED MOBILE */}
+      {/* CTA Section - ENHANCED MOBILE & SEO */}
       <Section>
         <div className="relative glass-barber rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 text-center border border-amber-400/20 overflow-hidden mx-4 sm:mx-0">
           {/* Background Pattern */}
@@ -333,12 +334,12 @@ export default function HomePage() {
           
           <div className="relative z-10">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 text-shadow-lg">
-              READY FOR YOUR <span className="text-barber-gradient">NEW LOOK</span>?
+              READY FOR YOUR <span className="text-barber-gradient">NEW LOOK</span> IN MOMBASA?
             </h2>
             <p className="text-lg sm:text-xl text-amber-100/90 mb-6 sm:mb-8 max-w-2xl mx-auto text-shadow px-2 sm:px-0">
               Join hundreds of confident men in Mombasa who trust Classic Barber with their style. 
               <span className="block text-amber-400 font-semibold mt-2 sm:mt-3 text-base sm:text-lg">
-                Walk-ins welcome • Same-day appointments • Satisfaction guaranteed
+                Best barber in Mombasa • Same-day appointments • Satisfaction guaranteed
               </span>
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
