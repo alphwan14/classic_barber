@@ -30,8 +30,44 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      {
+        url: '/favicon.ico',
+        sizes: 'any',
+      },
+      {
+        url: '/favicon-96x96.png',
+        sizes: '96x96',
+        type: 'image/png',
+      },
+      {
+        url: '/favicon.svg',
+        type: 'image/svg+xml',
+      },
+    ],
+    apple: [
+      {
+        url: '/apple-touch-icon.png',
+        sizes: '180x180',
+        type: 'image/png',
+      },
+    ],
+    other: [
+      {
+        rel: 'icon',
+        url: '/web-app-manifest-192x192.png',
+        sizes: '192x192',
+        type: 'image/png',
+      },
+      {
+        rel: 'icon',
+        url: '/web-app-manifest-512x512.png',
+        sizes: '512x512',
+        type: 'image/png',
+      },
+    ],
   },
+  manifest: '/site.webmanifest',
   openGraph: {
     title: 'Classic Barber — Premium Barbershop in Mombasa',
     description: 'Expert haircuts, beard grooming, and styling services in Mombasa. Book online with certified barbers.',
@@ -60,6 +96,7 @@ export const viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 1,
+  themeColor: '#d4af37',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -74,6 +111,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="geo.placename" content="Mombasa" />
         <meta name="geo.position" content="-4.0435;39.6682" />
         <meta name="ICBM" content="-4.0435, 39.6682" />
+        
+        {/* Favicon Links */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/web-app-manifest-192x192.png" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/web-app-manifest-512x512.png" />
+        
+        {/* Web App Manifest */}
+        <link rel="manifest" href="/site.webmanifest" />
+        
+        {/* Theme Color for Mobile Browsers */}
+        <meta name="theme-color" content="#d4af37" />
+        <meta name="msapplication-TileColor" content="#d4af37" />
         
         {/* Local Business Schema */}
         <script
@@ -130,8 +182,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             })
           }}
         />
-        
-        <link rel="icon" href="/favicon.ico" />
       </head>
       <body className={`${inter.className} min-h-screen flex flex-col bg-hero-gradient antialiased`}>
         <Header />
